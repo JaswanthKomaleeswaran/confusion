@@ -35,43 +35,45 @@ class DishDetail extends Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-12 col-md-5 m-1">
-          {this.renderDish(this.props.dish)}
-        </div>
-        <div className="col-12 col-md-5 m-1">
-          <div>
-            <h4>Comments</h4>
+      <div className="container">
+        <div className="row">
+          <div className="col-12 col-md-5 m-1">
+            {this.renderDish(this.props.dish)}
           </div>
+          <div className="col-12 col-md-5 m-1">
+            <div>
+              <h4>Comments</h4>
+            </div>
 
-          {this.renderComments()}
-          {this.renderComments(
-            ...[
-              "Imagine all the eatables, living in conFusion!",
-              "--John Lemon, Oct 17, 2012",
-            ]
-          )}
-          {this.renderComments(
-            ...[
-              "Sends Anyone to heaven, I wish I could get my mother-in-law to eat!",
-              "--Paul McVites, Sep 06, 2014",
-            ]
-          )}
-          {this.renderComments(
-            ...["Eat it, just eat it!", "--Michael Jaikishan, Feb 14, 2015"]
-          )}
-          {this.renderComments(
-            ...[
-              "Ultimate, Reaching for the stars!",
-              "--Ringo Stary, Dec 03, 2013",
-            ]
-          )}
-          {this.renderComments(
-            ...[
-              "It's your birthday, we're gonna party!",
-              "--25 Cent, Dec 03, 2011",
-            ]
-          )}
+            {this.renderComments()}
+            {this.renderComments(
+              ...[
+                "Imagine all the eatables, living in conFusion!",
+                "--John Lemon, Oct 17, 2012",
+              ]
+            )}
+            {this.renderComments(
+              ...[
+                "Sends Anyone to heaven, I wish I could get my mother-in-law to eat!",
+                "--Paul McVites, Sep 06, 2014",
+              ]
+            )}
+            {this.renderComments(
+              ...["Eat it, just eat it!", "--Michael Jaikishan, Feb 14, 2015"]
+            )}
+            {this.renderComments(
+              ...[
+                "Ultimate, Reaching for the stars!",
+                "--Ringo Stary, Dec 03, 2013",
+              ]
+            )}
+            {this.renderComments(
+              ...[
+                "It's your birthday, we're gonna party!",
+                "--25 Cent, Dec 03, 2011",
+              ]
+            )}
+          </div>
         </div>
       </div>
     );
