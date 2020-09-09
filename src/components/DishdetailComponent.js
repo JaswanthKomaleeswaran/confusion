@@ -2,13 +2,21 @@ import React, { Component } from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
 
 class DishDetail extends Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
+  // }
+
+  componentDidMount() {
+    console.log("DishDetail Component ComponentDidMount Invoked");
+  }
+
+  componentDidUpdate() {
+    console.log("DishDetail Component ComponentDidUpdate Invoked");
   }
 
   renderDish(dish) {
-    if (dish != null)
-      return (
+    return (
+      <div className="col-12 col-md-5 m-1">
         <Card>
           <CardImg top src={dish.image} alt={dish.name} />
           <CardBody>
@@ -16,67 +24,70 @@ class DishDetail extends Component {
             <CardText>{dish.description}</CardText>
           </CardBody>
         </Card>
-      );
-    else return <div></div>;
+      </div>
+    );
   }
 
-  renderComments(comments1, comments2) {
-    if (comments1 != null && comments2 != null)
+  renderComments(comments) {
+    if (comments != null)
       return (
-        <div>
+        <div className="col-12 col-md-5 m-1">
+          <h4>Comments</h4>
           <ul className="list-unstyled">
-            <li>{comments1}</li>
-            <li>{comments2}</li>
+            {comments.map((comment) => {
+              return (
+                <li key={comment.id}>
+                  <p>{comment.comment}</p>
+                  <p>
+                    --{comment.author},{" "}
+                    {new Intl.DateTimeFormat("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "2-digit",
+                    }).format(new Date(Date.parse(comment.date)))}
+                  </p>
+                </li>
+              );
+            })}
           </ul>
         </div>
       );
     else return <div></div>;
   }
 
-  render() {
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-12 col-md-5 m-1">
-            {this.renderDish(this.props.dish)}
-          </div>
-          <div className="col-12 col-md-5 m-1">
-            <div>
-              <h4>Comments</h4>
-            </div>
+  // renderComments(comments1, comments2) {
+  //   if (comments1 != null && comments2 != null)
+  //     return (
+  //       <div>
+  //         <ul className="list-unstyled">
+  //           <li>{comments1}</li>
+  //           <li>{comments2}</li>
+  //         </ul>
+  //       </div>
+  //     );
+  //   else return <div></div>;
+  // """
+  //   {this.renderComments(
+  //     ...[
+  //       "Imagine all the eatables, living in conFusion!",
+  //       "--John Lemon, Oct 17, 2012",
+  //     ]
+  //   )}
+  // """
+  // }
 
-            {this.renderComments()}
-            {this.renderComments(
-              ...[
-                "Imagine all the eatables, living in conFusion!",
-                "--John Lemon, Oct 17, 2012",
-              ]
-            )}
-            {this.renderComments(
-              ...[
-                "Sends Anyone to heaven, I wish I could get my mother-in-law to eat!",
-                "--Paul McVites, Sep 06, 2014",
-              ]
-            )}
-            {this.renderComments(
-              ...["Eat it, just eat it!", "--Michael Jaikishan, Feb 14, 2015"]
-            )}
-            {this.renderComments(
-              ...[
-                "Ultimate, Reaching for the stars!",
-                "--Ringo Stary, Dec 03, 2013",
-              ]
-            )}
-            {this.renderComments(
-              ...[
-                "It's your birthday, we're gonna party!",
-                "--25 Cent, Dec 03, 2011",
-              ]
-            )}
+  render() {
+    console.log("DishDetail Component Render Invoked");
+    if (this.props.dish != null)
+      return (
+        <div className="container">
+          <div className="row">
+            {this.renderDish(this.props.dish)}
+            {this.renderComments(this.props.dish.comments)}
           </div>
         </div>
-      </div>
-    );
+      );
+    else return <div></div>;
   }
 }
 
